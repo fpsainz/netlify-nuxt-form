@@ -1,38 +1,47 @@
 <template>
-  <div class="container">
+  <v-container grid-list-md>
     <h1 class="title">
       Contact
     </h1>
-    <div class="content">
-      <v-form v-model="valid" name="contact" action="" method="post" netlify>
-
+      <v-form v-model="valid" name="contact"
+      action="/thank-you"
+      netlify-honeypot="bot-field"
+      method="post" netlify>
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden">     
+          <label>Don’t fill this out: <input name="bot-field"></label>   
+        </p> 
         <v-text-field
-      v-model="name"
-      :rules="nameRules"
-      :counter="10"
-      label="Nome:"
-      required
-      name="name" id="name"
-    ></v-text-field>
+            v-model="name"
+            :rules="nameRules"
+            :counter="10"
+            label="Nome:"
+            required
+            class="form-field"
+            name="name" id="name"
+        ></v-text-field>
         <v-text-field
-      v-model="email"
-      :rules="emailRules"
-      label="Email:"
-      required
-      name="email" id="email"
-    ></v-text-field>
+            v-model="email"
+            :rules="emailRules"
+            label="Email:"
+            required
+            class="form-field"
+            name="email" id="email"
+        ></v-text-field>
         <label class="form-label" for="message">
           Message:
         </label>
         <v-textarea
-          name="message" id="message"
-          label="Deixe aqui o seu recado!"
-          value=""
-          hint="Hint text"
+            class="form-field"
+            name="message" id="message"
+            label="Deixe aqui o seu recado!"
+            value=""
+            hint="Hint text"
         ></v-textarea>
-        <v-btn @click="submit" color="success" block >Send message</v-btn>
-        <input type="hidden" name="form-name" value="contact" />
+        <v-btn class="form-button" 
+        type="submit" 
+        value="Send message" 
+        color="success" block >Send message</v-btn>
       </v-form>
-    </div>
-  </div>
+  </v-container>
 </template>
